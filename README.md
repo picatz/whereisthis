@@ -10,7 +10,7 @@ This gem is meant to be simple, easy to operate command-line application to help
 
 Useage is meant to be fairly straightforward. The application even defaults to a help menu.
 
-#### Ip Address
+### Ip Address
 
 Get all information about a particular ip address `8.8.8.8`:
 
@@ -22,7 +22,7 @@ or
 ```
 $ whereisthis -i 8.8.8.8
 ```
-#### Url
+### Url
 
 Get all information about a particular url `www.google.com`:
 
@@ -35,7 +35,7 @@ or
 $ whereisthis -w www.google.com
 ```
 
-### Hele Menu
+### Help Menu
 
 Help menu `-h` or `--help` or just run the application without any arguments:
 
