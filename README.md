@@ -4,18 +4,6 @@ This gem is meant to be simple, easy to operate command-line application to help
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'whereisthis'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install whereisthis
 
 ## Usage
