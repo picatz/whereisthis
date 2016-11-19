@@ -63,8 +63,6 @@ module Whereisthis
 
     Struct.new("WhereIsInfo", :ip, :hostname, :city, :region, :country, :gps, :org, :postal )
 
-    #  192.207.255.38
-
     # Get response from web service.
     data = Unirest.get('http://ipinfo.io/' + opts.ip).body
     # Change empty values to false.
@@ -89,14 +87,14 @@ module Whereisthis
 
     # manage output
     if filter.count > 0
-      puts "ip: " + whereisinfo.ip       if filter[:ip_given]
+      puts "ip: " + whereisinfo.ip             if filter[:ip_given]
       puts "hostname: " + whereisinfo.hostname if filter[:hostname_given]
-      puts "city: " + whereisinfo.city     if filter[:city_given]
-      puts "region: " + whereisinfo.region   if filter[:region_given]
-      puts "country: " + whereisinfo.country  if filter[:Country_given]
-      puts "gps: " + whereisinfo.gps      if filter[:gps_given]
-      puts "org: " + whereisinfo.org      if filter[:org_given]
-      puts "postal: " + whereisinfo.postal   if filter[:postal_given]
+      puts "city: " + whereisinfo.city         if filter[:city_given]
+      puts "region: " + whereisinfo.region     if filter[:region_given]
+      puts "country: " + whereisinfo.country   if filter[:Country_given]
+      puts "gps: " + whereisinfo.gps           if filter[:gps_given]
+      puts "org: " + whereisinfo.org           if filter[:org_given]
+      puts "postal: " + whereisinfo.postal     if filter[:postal_given]
     else
       # fancy spaces
       puts "      ip: " + whereisinfo.ip
