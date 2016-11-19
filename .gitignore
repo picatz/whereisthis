@@ -1,0 +1,9 @@
+*.gem
+*.rbc
+.DS_Store
+.bundle
+.rvmrc
+.ruby-version
+.rake_tasks~
+Gemfile.lock
+pkg/*
