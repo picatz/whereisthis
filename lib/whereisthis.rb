@@ -3,9 +3,9 @@ require 'colorize'
 require 'ipaddress'
 require 'trollop'
 require 'unirest'
-require "whereisthis/version"
 
 module Whereisthis
+  VERSION = "1.0.3"
 
   def self.findout!
     # Default to a help menu
