@@ -5,7 +5,7 @@ require 'trollop'
 require 'unirest'
 
 module Whereisthis
-  VERSION = "1.1.1"
+  VERSION = "1.0.0"
 
   def self.findout!
     # Default to a help menu

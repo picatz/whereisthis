@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require_relative '../lib/whereisthis.rb'
+require 'whereisthis'
 
 Whereisthis.findout!

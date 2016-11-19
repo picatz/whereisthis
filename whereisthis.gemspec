@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/picatz/whereisthis"
   spec.license       = "MIT"
 
+  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "bin"
   spec.executable    = "whereisthis"
   spec.require_paths = ["lib"]
