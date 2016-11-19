@@ -2,6 +2,10 @@
 
 This gem is meant to be simple, easy to operate command-line application to help determine the location information from a given ip address or url.
 
+## Screen Shot
+
+![screen_shot](http://i.imgur.com/aUEqpFS.png)
+
 ## Installation
 
     $ gem install whereisthis
