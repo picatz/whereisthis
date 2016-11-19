@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["kgruber1@emich.edu"]
 
   spec.summary       = %q{A command-line application to help determine the location information from a given ip address or url.}
-  spec.description   = %q{A command-line application to help determine the location information from a given ip address or url. This application is meant to be easy to operate and attempts to follow simple unix philosophies and sit right along side commands like whoami in your command-line arsenal.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.description   = %q{A command-line application to help determine the location information from a given ip address or url. This application is meant to be easy to operate and attempts to follow simple unix philosophies to easily sit right along side commands like whoami in your command-line arsenal.}
+  spec.homepage      = "https://github.com/picatz/whereisthis"
   spec.license       = "MIT"
 
   spec.bindir        = "bin"
