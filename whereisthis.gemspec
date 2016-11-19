@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kent Gruber"]
   spec.email         = ["kgruber1@emich.edu"]
 
-  spec.summary       = %q{Help determine country, city, gps coordinates and more from an ip address or url.}
-  spec.description   = %q{This gem is meant to provide a tool following unix philosophies. It's meant to be simple, easy to use and straightforward to operate to help determine the location information from a given ip address or url.}
+  spec.summary       = %q{A command-line application to help determine the location information from a given ip address or url.}
+  spec.description   = %q{A command-line application to help determine the location information from a given ip address or url. This application is meant to be easy to operate and attempts to follow simple unix philosophies and sit right along side commands like whoami in your command-line arsenal.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
