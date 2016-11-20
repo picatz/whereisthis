@@ -1,3 +1,4 @@
+require 'pry'
 require 'socket'
 require 'colorize'
 require 'ipaddress'
@@ -21,7 +22,7 @@ module Whereisthis
       opt :postal,   "Show the postal information if possible"
       opt :org,      "Show the organization information if possible"
       opt :Hostname, "Show the hostname information if possible"
-      opt :ip,       "Specify the ip address to lookup",     :type => :string
+      opt :ip,       "Specify the ip address to lookup",  :type => :string
       opt :website,  "Specify the website url to lookup", :type => :string
     end
 
@@ -32,7 +33,7 @@ module Whereisthis
       end
     elsif opts.website
       begin
-        opts.ip = IPSocket::getaddress(opts.website)
+        opts[:ip] = IPSocket::getaddress(opts.website)
       rescue
         puts "Unable to resolve #{opts.website} to an ip address. Is it legit?"
         exit 1
@@ -51,13 +52,7 @@ module Whereisthis
     end
 
     unless opts.ip or opts.website
-      binding.pry
       puts "Need to specify an ip address or website to figure out what it is!"
-      exit 1
-    end
-
-    if opts.ip and opts.website
-      puts "Need to specify either just an ip address or website ( not both ) to figure out what it is!"
       exit 1
     end
 
