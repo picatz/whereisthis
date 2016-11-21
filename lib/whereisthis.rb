@@ -61,7 +61,7 @@ module Whereisthis
     # Get response from web service.
     data = Unirest.get('http://ipinfo.io/' + opts.ip).body
     # Change empty values to false.
-    data.each { |k,v| v.empty? ? data[k] = false : data[k] = v  }
+    data.each { |k,v| v.nil? || v.empty? ? data[k] = false : data[k] = v  }
 
     whereisinfo = Struct::WhereIsInfo.new
 
