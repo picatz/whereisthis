@@ -1,4 +1,14 @@
-require 'pry'
+#!/usr/bin/env ruby
+#
+# Whereisthis
+#
+# This is a simple command-line application to help determine 
+# the location information from a given ip address or url.
+#
+# Author::    Kent 'picat' Gruber
+# Copyright:: Copyright (c) 2016 Kent Gruber
+# License::   MIT
+
 require 'socket'
 require 'colorize'
 require 'ipaddress'
@@ -6,12 +16,26 @@ require 'trollop'
 require 'unirest'
 
 module Whereisthis
-  VERSION = "1.2.0"
+  
+  # Specify version number.
+  VERSION = "1.3.0"
 
+  # .findout! is the main workhorse of this application. It starts
+  # the option parsing; and performs the main logic for basically
+  # everything.
+  #
+  # == Example
+  #
+  #  # Typical use:
+  #  require 'whereisthis'
+  #  ARGV[0] = "8.8.8.8"
+  #  Whereisthis.findout! 
+  # 
   def self.findout!
-    # Default to a help menu
+    # Default to a help menu if no argument is given.
     foo = ARGV[0] || ARGV[0] = '-h'
-
+    
+    # Parse options into a hash.
     opts = Trollop::options do
       banner "whereisthis?".bold.red + " Find out where that ip or website is.".bold
       version "#{Whereisthis::VERSION}"
@@ -25,12 +49,14 @@ module Whereisthis
       opt :ip,       "Specify the ip address to lookup",  :type => :string
       opt :website,  "Specify the website url to lookup", :type => :string
     end
-
+    
+    # If an ip is specified with -i or --ip at the command-line.
     if opts.ip
       unless IPAddress.valid? opts.ip
         puts "Unable to verify '#{opts.ip}' is a valid ip address."
         exit 1
       end
+    # If an website is specified with -w or --website at the command-line.
     elsif opts.website
       begin
         opts[:ip] = IPSocket::getaddress(opts.website)
@@ -38,6 +64,7 @@ module Whereisthis
         puts "Unable to resolve #{opts.website} to an ip address. Is it legit?"
         exit 1
       end
+    # If the first argument is simply an IP address or website.
     elsif ARGV[0]
       if IPAddress.valid? ARGV[0]
         opts[:ip] = ARGV[0]
@@ -51,11 +78,7 @@ module Whereisthis
       end
     end
 
-    unless opts.ip or opts.website
-      puts "Need to specify an ip address or website to figure out what it is!"
-      exit 1
-    end
-
+    # A container of data for our information.
     Struct.new("WhereIsInfo", :ip, :hostname, :city, :region, :country, :gps, :org, :postal )
 
     # Get response from web service.
@@ -75,12 +98,13 @@ module Whereisthis
     whereisinfo.org      = data["org"]      || "Not found."
     whereisinfo.postal   = data["postal"]   || "Not found."
 
-    # keep track of the filters & delete the given givens
+    # Keep track of the filters & delete the given givens,
+    # because we don't need to keep track of them.
     filter = Hash[opts.keys.keep_if { |k| k.to_s =~ /_given\b/ } .collect { |i| [i, true] } ]
     filter.delete_if { |k,v| k.to_s == "ip_given" }
     filter.delete_if { |k,v| k.to_s == "website_given" }
 
-    # manage output
+    # Manage output with or without filters/ fancy spaces.
     if filter.count > 0
       puts "ip: " + whereisinfo.ip             if filter[:ip_given]
       puts "hostname: " + whereisinfo.hostname if filter[:hostname_given]
@@ -101,7 +125,6 @@ module Whereisthis
       puts "     org: " + whereisinfo.org
       puts "  postal: " + whereisinfo.postal
     end
-
   end
 
 end
