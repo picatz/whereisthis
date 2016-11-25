@@ -84,16 +84,17 @@ module Whereisthis
     data.each { |k,v| v.nil? || v.empty? ? data[k] = false : data[k] = v  }
 
     whereisinfo = Struct::WhereIsInfo.new
+    missing_info = "Not found."
 
     # Map data to WhereIsInfo data, defaulting to false for missing info.
-    whereisinfo.ip       = data["ip"]       || "Not found."
-    whereisinfo.hostname = data["hostname"] || "Not found."
-    whereisinfo.city     = data["city"]     || "Not found."
-    whereisinfo.region   = data["region"]   || "Not found."
-    whereisinfo.country  = data["country"]  || "Not found."
-    whereisinfo.gps      = data["loc"]      || "Not found."
-    whereisinfo.org      = data["org"]      || "Not found."
-    whereisinfo.postal   = data["postal"]   || "Not found."
+    whereisinfo.ip       = data["ip"]       || missing_info
+    whereisinfo.hostname = data["hostname"] || missing_info
+    whereisinfo.city     = data["city"]     || missing_info
+    whereisinfo.region   = data["region"]   || missing_info
+    whereisinfo.country  = data["country"]  || missing_info
+    whereisinfo.gps      = data["loc"]      || missing_info
+    whereisinfo.org      = data["org"]      || missing_info
+    whereisinfo.postal   = data["postal"]   || missing_info
 
     # Keep track of the filters & delete the given givens,
     # because we don't need to keep track of them.
