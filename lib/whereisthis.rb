@@ -2,7 +2,7 @@
 #
 # Whereisthis
 #
-# This is a simple command-line application to help determine 
+# This is a simple command-line application to help determine
 # the location information from a given ip address or url.
 #
 # Author::    Kent 'picat' Gruber
@@ -16,7 +16,7 @@ require 'trollop'
 require 'unirest'
 
 module Whereisthis
-  
+
   # Specify version number.
   VERSION = "1.3.0"
 
@@ -29,12 +29,12 @@ module Whereisthis
   #  # Typical use:
   #  require 'whereisthis'
   #  ARGV[0] = "8.8.8.8"
-  #  Whereisthis.findout! 
-  # 
+  #  Whereisthis.findout!
+  #
   def self.findout!
     # Default to a help menu if no argument is given.
     foo = ARGV[0] || ARGV[0] = '-h'
-    
+
     # Parse options into a hash.
     opts = Trollop::options do
       banner "whereisthis?".bold.red + " Find out where that ip or website is.".bold
@@ -49,20 +49,18 @@ module Whereisthis
       opt :ip,       "Specify the ip address to lookup",  :type => :string
       opt :website,  "Specify the website url to lookup", :type => :string
     end
-    
+
     # If an ip is specified with -i or --ip at the command-line.
     if opts.ip
       unless IPAddress.valid? opts.ip
-        puts "Unable to verify '#{opts.ip}' is a valid ip address."
-        exit 1
+        raise "Unable to verify '#{opts.ip}' is a valid ip address."
       end
     # If an website is specified with -w or --website at the command-line.
     elsif opts.website
       begin
         opts[:ip] = IPSocket::getaddress(opts.website)
       rescue
-        puts "Unable to resolve #{opts.website} to an ip address. Is it legit?"
-        exit 1
+        raise "Unable to resolve #{opts.website} to an ip address. Is it legit?"
       end
     # If the first argument is simply an IP address or website.
     elsif ARGV[0]
@@ -72,8 +70,7 @@ module Whereisthis
         begin
           opts[:ip] = IPSocket::getaddress(ARGV[0])
         rescue
-          puts "Unable to resolve #{ARGV[0]} to an ip address. Is it legit?"
-          exit 1
+          raise "Unable to resolve #{ARGV[0]} to an ip address. Is it legit?"
         end
       end
     end
