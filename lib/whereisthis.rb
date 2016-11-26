@@ -113,15 +113,9 @@ module Whereisthis
       puts "org: " + whereisinfo.org           if filter[:org_given]
       puts "postal: " + whereisinfo.postal     if filter[:postal_given]
     else
-      # fancy spaces
-      puts "      ip: " + whereisinfo.ip
-      puts "hostname: " + whereisinfo.hostname
-      puts "    city: " + whereisinfo.city
-      puts "  region: " + whereisinfo.region
-      puts " country: " + whereisinfo.country
-      puts "     gps: " + whereisinfo.gps
-      puts "     org: " + whereisinfo.org
-      puts "  postal: " + whereisinfo.postal
+      whereisinfo.each_pair do |name, value|
+        puts "#{name.to_s.rjust(8)}: #{value}"
+      end
     end
   end
 
