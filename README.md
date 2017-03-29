@@ -10,12 +10,6 @@ This gem is meant to be simple, easy to operate command-line application to help
 
     $ gem install whereisthis
 
-#### macOS Gem Install Note
-
-By default, macOS will not install the command-line application in the `/usr/bin/` directory; and if you're not using something like RVM and you're getting a permissions error, then this should work:
-
-    $ sudo gem install -n /usr/local/bin whereisthis
-
 ## Usage
 
 Useage is meant to be fairly straightforward. The application even defaults to a help menu.
